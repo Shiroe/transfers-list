@@ -1,13 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-type Data = {
-  name: string;
-};
+import { ITransfer } from '@/models/Transfer';
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<ITransfer[] | object>
 ) {
   res.status(200).json({ name: 'John Doe' });
 }
