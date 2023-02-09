@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import Layout from '@/components/Layout';
 
 export default function Home() {
   return (
@@ -10,7 +10,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main></main>
+      <Layout>
+        <section className="p-[30px] pl-[121px]">
+          <h2 className="font-semibold text-brand-blue">Transfers</h2>
+        </section>
+      </Layout>
     </>
   );
 }
