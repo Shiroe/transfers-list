@@ -1,7 +1,14 @@
 import Head from 'next/head';
+import { GetStaticProps, NextPage } from 'next';
 import Layout from '@/components/Layout';
+import TransfersList from '@/components/TransfersList';
+import { ITransfer } from '@/models/Transfer';
 
-export default function Home() {
+type PageProps = {
+  transfers: ITransfer[];
+} & NextPage;
+
+export default function Home({ transfers }: PageProps) {
   return (
     <>
       <Head>
@@ -11,10 +18,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <section className="p-[30px] pl-[121px]">
-          <h2 className="font-semibold text-brand-blue">Transfers</h2>
+        <section className="p-[31px] pl-[112px]">
+          <TransfersList transfers={transfers} />
         </section>
       </Layout>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch('http://127.0.0.1:3000/api/transfers');
+
+  const transfers: ITransfer[] = await res.json();
+
+  return {
+    props: {
+      transfers,
+    },
+  };
+};
