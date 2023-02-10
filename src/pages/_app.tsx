@@ -1,8 +1,8 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { MuseoModerno } from '@next/font/google';
+import { Inter } from '@next/font/google';
 
-const museo = MuseoModerno({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -10,11 +10,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <style jsx global>
         {`
           :root {
-            --font-museo: ${museo.style.fontFamily};
+            --font-inter: ${inter.style.fontFamily};
           }
         `}
       </style>
-      <Component {...pageProps} />
+      <Component {...pageProps} className={`${inter.variable} font-sans`} />
     </>
   );
 }
