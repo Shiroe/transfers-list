@@ -5,10 +5,10 @@ import TransfersList from '@/components/TransfersList';
 import { ITransfer } from '@/models/Transfer';
 
 type PageProps = {
-  transfers: ITransfer[];
+  transfers: ITransfer[] | null;
 } & NextPage;
 
-export default function Home({ transfers }: PageProps) {
+const Home = ({ transfers }: PageProps) => {
   return (
     <>
       <Head>
@@ -24,16 +24,29 @@ export default function Home({ transfers }: PageProps) {
       </Layout>
     </>
   );
-}
+};
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch('http://127.0.0.1:3000/api/transfers');
+  /**
+   * This function runs only on serverside at build time
+   * so it is safe to use env variables and sensitive info
+   * like API keys here.
+   */
+  const URL =
+    process.env.NODE_ENV === 'development'
+      ? process.env.DEV_URL
+      : process.env.PRODUCTION_URL;
 
-  const transfers: ITransfer[] = await res.json();
+  const res = await fetch(`${URL}/api/transfers`);
+
+  const { transfers } = await res.json();
 
   return {
     props: {
-      transfers,
+      transfers: transfers || null,
     },
+    revalidate: 60, // Re-hydrates every 60s the props in case they changed
   };
 };
+
+export default Home;

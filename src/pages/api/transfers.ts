@@ -3,9 +3,17 @@ import { promises as fs } from 'fs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ITransfer } from '@/models/Transfer';
 
+type TRANSFERS_RESPONSE = {
+  transfers: ITransfer[];
+};
+
+type ERROR_RESPONSE = {
+  error: string;
+};
+
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ITransfer[] | object>
+  res: NextApiResponse<TRANSFERS_RESPONSE | ERROR_RESPONSE>
 ) {
   const jsonDirectory = path.join(process.cwd(), 'src/json');
   const fileContents = await fs.readFile(
@@ -13,10 +21,10 @@ export default async function handler(
     'utf8'
   );
 
-  const results = JSON.parse(fileContents);
+  const results: ITransfer[] = JSON.parse(fileContents);
 
-  if (results) {
-    res.status(200).json(results);
+  if (results.length) {
+    res.status(200).json({ transfers: results });
   } else {
     res.status(500).json({ error: 'Something went wrong..' });
   }

@@ -6,7 +6,7 @@ import { ITransfer } from '@/models/Transfer';
 import dayjs from 'dayjs';
 
 type TransfersListProps = {
-  transfers?: ITransfer[];
+  transfers?: ITransfer[] | null;
 };
 
 const TransfersList = ({ transfers }: TransfersListProps) => {
@@ -20,6 +20,19 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
 
     return null;
   };
+
+  if (!transfers) {
+    return (
+      <>
+        <h2 className="mb-[42px] text-title font-semibold text-brand-blue">
+          Transfers
+        </h2>
+        <h4 className="text-regular text-brand-blue text-opacity-50">
+          No transfers currently scheduled.
+        </h4>
+      </>
+    );
+  }
 
   return (
     <>
