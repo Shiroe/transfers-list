@@ -7,7 +7,10 @@ interface RowHeading {
 
 const TransferRowHeading = ({ children, className, ...props }: RowHeading) => {
   return (
-    <h3 {...props} className={`text-brand-blue text-opacity-50 ${className}`}>
+    <h3
+      {...props}
+      className={`my-[12px] text-brand-blue text-opacity-50 ${className}`}
+    >
       {children}
     </h3>
   );
