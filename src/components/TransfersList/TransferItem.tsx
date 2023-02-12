@@ -39,7 +39,7 @@ const TransferItem = ({
       key={id}
       className={`flex items-center rounded-[6px] bg-white py-[9px] px-[15px] text-regular text-brand-blue shadow-sm ${className}`}
     >
-      <Status className="mr-[20px] h-[38px] w-[38px] rounded-full">
+      <Status className="mr-[10px] w-[5%]">
         {category === 'Arrival' ? (
           <ArrivalIcon size={38} />
         ) : category === 'Departure' ? (
@@ -63,7 +63,7 @@ const TransferItem = ({
         </span>
       </Avatar>
       <DateTime className="mr-[10px] w-[17.5%] ">
-        {dayjs(datetime).tz().format('ddd, D MMM HH:mm')}
+        {dayjs(datetime).format('ddd, D MMM HH:mm')}
       </DateTime>
       <LocationTitle className="mr-[10px] w-[17.5%] overflow-hidden text-ellipsis whitespace-nowrap">
         {location_title}
