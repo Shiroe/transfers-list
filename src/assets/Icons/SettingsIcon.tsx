@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-
-interface IIcon {
-  color?: string;
-  size?: number;
-}
+import { IIcon } from '.';
 
 const SettingsIcon = ({ color = '#2D3B4E', size = 32 }: IIcon) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
