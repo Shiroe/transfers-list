@@ -39,7 +39,8 @@ const Pagination: React.FC<PaginationProps> = ({
         return (
           <button
             key={i + 1}
-            className={`flex h-[38px] w-[38px] items-center justify-center bg-white text-regular shadow-sm ${
+            className={`flex h-[38px] w-[38px] items-center justify-center 
+            bg-white text-regular shadow-sm transition-colors duration-150 ease-in ${
               isFirstPage ? 'rounded-l-[4px]' : ''
             } ${isLastPage ? 'rounded-r-[4px]' : ''} ${
               currentPage === i + 1 ? 'bg-brand-blue  text-white' : ''
