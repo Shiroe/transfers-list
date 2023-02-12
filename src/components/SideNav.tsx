@@ -13,7 +13,7 @@ const SideNav = () => {
   return (
     <aside
       className={`
-          absolute top-0 bottom-0 left-0 flex w-[82px] flex-col 
+          fixed top-0 bottom-0 left-0 flex w-[82px] flex-col 
           justify-between rounded-r-[8px] bg-white p-[17px] shadow
         `}
     >
