@@ -5,7 +5,7 @@ import TransfersList from '@/components/TransfersList';
 import { ITransfer } from '@/models/Transfer';
 
 type PageProps = {
-  transfers: ITransfer[] | null;
+  transfers: ITransfer[] | [];
 } & NextPage;
 
 const Home = ({ transfers }: PageProps) => {
@@ -18,7 +18,7 @@ const Home = ({ transfers }: PageProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <section className="p-[31px] pl-[112px]">
+        <section className="flex flex-col justify-center p-[31px] pl-[112px] pt-[102px]">
           <TransfersList transfers={transfers} />
         </section>
       </Layout>
@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      transfers: transfers || null,
+      transfers: transfers || [],
     },
     revalidate: 60, // Re-hydrates every 60s the props in case they changed
   };
