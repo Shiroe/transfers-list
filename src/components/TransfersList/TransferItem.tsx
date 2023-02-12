@@ -32,6 +32,8 @@ const TransferItem = ({
   return_transfer,
   className,
 }: ITransferItem) => {
+  const opportunityExists =
+    babies || early_checkin || late_checkout || return_transfer;
   return (
     <div
       key={id}
@@ -85,6 +87,11 @@ const TransferItem = ({
         {return_transfer && (
           <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-brand-gray">
             <TransferIcon size={24} />
+          </div>
+        )}
+        {!opportunityExists && (
+          <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[3px] border-brand-gray">
+            <div className="h-[2px] w-[6px] bg-brand-gray-dark"></div>
           </div>
         )}
       </TransferOpportunities>
