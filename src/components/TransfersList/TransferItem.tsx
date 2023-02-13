@@ -16,7 +16,9 @@ interface CompoundProps {
   className?: string;
 }
 
-interface ITransferItem extends CompoundProps, ITransfer {}
+interface ITransferItem extends CompoundProps, ITransfer {
+  onClick?: () => void;
+}
 
 const TransferItem = ({
   id,
@@ -31,12 +33,14 @@ const TransferItem = ({
   late_checkout,
   return_transfer,
   className,
+  onClick,
 }: ITransferItem) => {
   const opportunityExists =
     babies || early_checkin || late_checkout || return_transfer;
   return (
     <div
       key={id}
+      onClick={onClick}
       className={`flex items-center rounded-[6px] bg-white py-[9px] px-[15px] text-regular text-brand-blue shadow-sm ${className}`}
     >
       <Status className="mr-[10px] w-[5%]">
