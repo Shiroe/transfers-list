@@ -88,6 +88,13 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
     }
   };
 
+  const onModalDismiss = () => {
+    setIsModalOpen(false);
+    setTimeout(() => {
+      setTransferInView(null);
+    }, 500);
+  };
+
   if (!transfers) {
     return (
       <>
@@ -159,7 +166,7 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
         handleClick={handleClick}
       />
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Modal isOpen={isModalOpen} onClose={onModalDismiss}>
         <div
           onClick={(ev) => onDetailsPagination(ev, 'prev')}
           className={`flex h-[40px] w-[40px] -rotate-180 items-center justify-center rounded-full bg-white pl-1 ${
@@ -169,10 +176,7 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
           <NextArrowIcon />
         </div>
 
-        <TransferDetails
-          transfer={transferInView}
-          onClose={() => setIsModalOpen(false)}
-        >
+        <TransferDetails transfer={transferInView} onClose={onModalDismiss}>
           {loadingInView && (
             <div className="absolute inset-0 z-50 flex items-center justify-center bg-brand-blue bg-opacity-50">
               <div className="animate-spin">
