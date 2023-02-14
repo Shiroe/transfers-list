@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { IIcon } from '.';
+import { NavItemIcon } from '.';
 
-const StatisticsIcon = ({ color = '#2D3B4E', size = 32 }: IIcon) => {
+const StatisticsIcon = ({
+  color = '#2D3B4E',
+  size = 32,
+  isActive = false,
+}: NavItemIcon) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
     <div
-      className="mb-[15px] flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-[8px] transition-colors duration-150 ease-in-out hover:bg-brand-green"
+      className={`mb-[15px] flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-[8px] ${
+        isActive ? 'bg-brand-green-dim' : ''
+      } transition-colors duration-150 ease-in-out hover:bg-brand-green`}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
     >
@@ -21,8 +27,8 @@ const StatisticsIcon = ({ color = '#2D3B4E', size = 32 }: IIcon) => {
           fillRule="evenodd"
           clipRule="evenodd"
           d="M19.9999 20.0807V21.0001H3.99994V5.00009H4.91932C5.14639 5.00009 5.3667 4.92281 5.54401 4.78095C5.97527 4.43595 6.04519 3.80665 5.70019 3.37539L3.78081 0.976172C3.73468 0.918507 3.6823 0.86613 3.62464 0.819998C3.19337 0.474989 2.56408 0.54491 2.21907 0.976172L0.299698 3.37539C0.157847 3.5527 0.0805664 3.77301 0.0805664 4.00009C0.0805664 4.55237 0.528282 5.00009 1.08057 5.00009H1.99994V21.0001C1.99994 22.1047 2.89537 23.0001 3.99994 23.0001H19.9999V23.9195C19.9999 24.1465 20.0772 24.3668 20.2191 24.5442C20.5641 24.9754 21.1934 25.0453 21.6246 24.7003L24.0239 22.781C24.0815 22.7348 24.1339 22.6824 24.18 22.6248C24.525 22.1935 24.4551 21.5642 24.0239 21.2192L21.6246 19.2998C21.4473 19.158 21.227 19.0807 20.9999 19.0807C20.4477 19.0807 19.9999 19.5284 19.9999 20.0807ZM7.99994 8.00009C7.99994 8.55237 8.44766 9.00009 8.99994 9.00009H17.9999C18.5522 9.00009 18.9999 8.55237 18.9999 8.00009C18.9999 7.4478 18.5522 7.00009 17.9999 7.00009H8.99994C8.44766 7.00009 7.99994 7.4478 7.99994 8.00009ZM8.99994 13.0001C8.44766 13.0001 7.99994 12.5524 7.99994 12.0001C7.99994 11.4478 8.44766 11.0001 8.99994 11.0001H14.9999C15.5522 11.0001 15.9999 11.4478 15.9999 12.0001C15.9999 12.5524 15.5522 13.0001 14.9999 13.0001H8.99994ZM7.99994 16.0001C7.99994 16.5524 8.44766 17.0001 8.99994 17.0001H16.9999C17.5522 17.0001 17.9999 16.5524 17.9999 16.0001C17.9999 15.4478 17.5522 15.0001 16.9999 15.0001H8.99994C8.44766 15.0001 7.99994 15.4478 7.99994 16.0001Z"
-          fill={isHovered ? '#fff' : color}
-          fillOpacity={isHovered ? '1' : '0.5'}
+          fill={isHovered || isActive ? '#fff' : color}
+          fillOpacity={isHovered || isActive ? '1' : '0.5'}
         />
       </svg>
     </div>

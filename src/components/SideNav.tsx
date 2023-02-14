@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import logoSvg from 'public/logo.svg';
 
@@ -10,6 +11,7 @@ import RevenueIcon from '@/assets/Icons/RevenueIcon';
 import SettingsIcon from '@/assets/Icons/SettingsIcon';
 
 const SideNav = () => {
+  const router = useRouter();
   return (
     <aside
       className={`
@@ -25,11 +27,11 @@ const SideNav = () => {
             alt="logo image"
           />
         </div>
-        <LiveIcon />
-        <ScheduledIcon size={26} />
-        <StatisticsIcon />
-        <RevenueIcon />
-        <SettingsIcon />
+        <LiveIcon isActive={router.pathname === '/live'} />
+        <ScheduledIcon isActive={router.pathname === '/'} size={26} />
+        <StatisticsIcon isActive={router.pathname === '/statistics'} />
+        <RevenueIcon isActive={router.pathname === '/revenue'} />
+        <SettingsIcon isActive={router.pathname === '/settings'} />
       </div>
     </aside>
   );
