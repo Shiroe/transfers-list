@@ -13,7 +13,12 @@ module.exports = {
         xxs: ['10px', '12px'],
         xs: ['11px', '13px'],
         sm: ['12px', '14px'],
+        'sm-extra': ['12px', '18px'],
         regular: ['14px', '17px'],
+        'regular-extra': ['14px', '21px'],
+        md: ['15px', '24px'],
+        lg: ['18px', '22px'],
+        'lg-extra': ['18px', '26px']
       },
       colors: {
         brand: {
