@@ -6,9 +6,11 @@ import TransferItem from './TransferItem';
 
 import { ITransfer, ITransferDetails } from '@/models/Transfer';
 import Pagination from '@/components/Pagination';
-import Portal from '@/components/Portal';
+import Modal from '@/components/Modal';
+import TransferDetails from '@/components/TransferDetails';
+
 import NextArrowIcon from '@/assets/Icons/NextArrowIcon';
-import CloseIcon from '@/assets/Icons/CloseIcon';
+import HalfCircleIcon from '@/assets/Icons/HalfCircleIcon';
 
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -25,11 +27,12 @@ type TransfersListProps = {
 const TransfersList = ({ transfers }: TransfersListProps) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [transfersPerPage] = useState<number>(9);
+  const [loadingInView, setLoadingInView] = useState<boolean>(false);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [transferInView, setTransferInView] = useState<ITransferDetails | null>(
-    null
-  );
+  const [transferInView, setTransferInView] = useState<
+    (ITransferDetails & ITransfer) | null
+  >(null);
 
   const sortedTransfers = [...transfers].sort(
     (a, b) => dayjs(a.datetime).valueOf() - dayjs(b.datetime).valueOf()
@@ -45,15 +48,42 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
   const handleClick = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const fetchDetails = async (id: number) => {
+    setLoadingInView(true);
     const res = await fetch('/api/transferDetails', {
       method: 'POST',
       body: JSON.stringify({ id }),
     });
 
     const data = await res.json();
-    const transfer: ITransferDetails | null = data?.transfer || null;
+    const transfer = data?.transfer as ITransferDetails;
+    const overview = sortedTransfers.filter(
+      (s) => s.id === transfer?.id
+    )[0] as ITransfer;
+
     console.log('FETCHED DETAILS: ', transfer);
-    setTransferInView(transfer);
+    setTransferInView({ ...transfer, ...overview, id: overview.id });
+    setLoadingInView(false);
+  };
+
+  const onDetailsPagination = (
+    ev: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    side: string
+  ) => {
+    ev.stopPropagation();
+
+    if (!transferInView) return;
+
+    const indexOfTransfer = sortedTransfers.findIndex(
+      (t) => t.id === transferInView.id
+    );
+
+    if (side === 'prev') {
+      const prevId = sortedTransfers[indexOfTransfer - 1]?.id;
+      if (prevId) fetchDetails(prevId);
+    } else {
+      const nextId = sortedTransfers[indexOfTransfer + 1]?.id;
+      if (nextId) fetchDetails(nextId);
+    }
   };
 
   if (!transfers) {
@@ -127,49 +157,34 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
         handleClick={handleClick}
       />
 
-      <Portal
-        onClick={() => {
-          setIsModalOpen(false);
-        }}
-        className={`fixed inset-0 flex items-center
-        justify-around bg-brand-blue bg-opacity-95
-        transition-all delay-75 duration-300 ease-in-out
-          ${isModalOpen ? `` : `translate-y-full bg-opacity-20`}
-        `}
-      >
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div
-          onClick={(ev) => ev.stopPropagation()}
+          onClick={(ev) => onDetailsPagination(ev, 'prev')}
           className="flex h-[40px] w-[40px] -rotate-180 items-center justify-center rounded-full bg-white pl-1"
         >
           <NextArrowIcon />
         </div>
 
-        <div
-          onClick={(ev) => ev.stopPropagation()}
-          className="flex h-[87%] w-[82.5%] items-center justify-center rounded-[8px] bg-white shadow-md"
+        <TransferDetails
+          transfer={transferInView}
+          onClose={() => setIsModalOpen(false)}
         >
-          <div className="h-full w-[25.8%] border-r border-r-brand-blue border-opacity-[0.08] px-[36px] py-[22px]"></div>
-          <div className="relative h-full w-[74%] p-[38px]">
-            <div
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-[22px] right-[22px] flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-full bg-brand-blue bg-opacity-5"
-            >
-              <CloseIcon size={20} />
+          {loadingInView && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-brand-blue bg-opacity-50">
+              <div className="animate-spin">
+                <HalfCircleIcon />
+              </div>
             </div>
-            <h3 className="mt-[5px] mb-[18px] text-title font-semibold text-brand-blue">
-              Transfers
-            </h3>
-            <div className="rounded-[6px] bg-brand-blue bg-opacity-[0.03] p-[32px] pt-[26px]"></div>
-          </div>
-        </div>
+          )}
+        </TransferDetails>
 
         <div
-          onClick={(ev) => ev.stopPropagation()}
+          onClick={(ev) => onDetailsPagination(ev, 'next')}
           className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white"
         >
           <NextArrowIcon />
         </div>
-      </Portal>
+      </Modal>
     </>
   );
 };
