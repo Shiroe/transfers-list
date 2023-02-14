@@ -4,8 +4,8 @@ import { IIcon } from '.';
 const NextArrowIcon: React.FC<IIcon> = ({ size = 16, color = '#2D3B4E' }) => {
   return (
     <svg
-      width="9"
-      height="16"
+      width={size * 0.5625}
+      height={size}
       viewBox="0 0 9 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
