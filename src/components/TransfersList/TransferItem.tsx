@@ -7,7 +7,7 @@ import ArrivalIcon from '@/assets/Icons/ArrivalIcon';
 import DepartureIcon from '@/assets/Icons/DepartureIcon';
 import InCityIcon from '@/assets/Icons/InCityIcon';
 import BabyIcon from '@/assets/Icons/BabyIcon';
-import TransferIcon from '@/assets/Icons/TransferIcon';
+import ReturnTransferIcon from '@/assets/Icons/ReturnTransferIcon';
 import SunIcon from '@/assets/Icons/SunIcon';
 import MoonIcon from '@/assets/Icons/MoonIcon';
 
@@ -90,7 +90,7 @@ const TransferItem = ({
         )}
         {return_transfer && (
           <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-brand-gray">
-            <TransferIcon size={24} />
+            <ReturnTransferIcon size={24} />
           </div>
         )}
         {!opportunityExists && (
