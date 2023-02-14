@@ -39,8 +39,6 @@ yarn dev # to run the dev server
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the app.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
 ### API routes:
 
 - [api/transfers](http://localhost:3000/api/transfers): get all transfers from simulated endpoint (originally found locally inside `src/json`)
