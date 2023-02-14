@@ -60,9 +60,11 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
       (s) => s.id === transfer?.id
     )[0] as ITransfer;
 
-    console.log('FETCHED DETAILS: ', transfer);
-    setTransferInView({ ...transfer, ...overview, id: overview.id });
-    setLoadingInView(false);
+    setTimeout(() => {
+      // simulating fetch time
+      setTransferInView({ ...transfer, ...overview, id: overview.id });
+      setLoadingInView(false);
+    }, 500);
   };
 
   const onDetailsPagination = (
@@ -160,7 +162,9 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div
           onClick={(ev) => onDetailsPagination(ev, 'prev')}
-          className="flex h-[40px] w-[40px] -rotate-180 items-center justify-center rounded-full bg-white pl-1"
+          className={`flex h-[40px] w-[40px] -rotate-180 items-center justify-center rounded-full bg-white pl-1 ${
+            loadingInView ? 'cursor-not-allowed' : 'cursor-pointer'
+          }`}
         >
           <NextArrowIcon />
         </div>
@@ -180,7 +184,9 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
 
         <div
           onClick={(ev) => onDetailsPagination(ev, 'next')}
-          className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white"
+          className={`flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white ${
+            loadingInView ? 'cursor-not-allowed' : 'cursor-pointer'
+          }`}
         >
           <NextArrowIcon />
         </div>
