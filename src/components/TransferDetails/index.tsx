@@ -114,20 +114,20 @@ const TransferDetails: React.FC<TransferDetailsProps> = ({
           </DetailsHighlight>
           {transfer?.flight_status && (
             <DetailsHighlight>
-              <div className="mr-[15px] flex items-center justify-start border-r border-r-brand-blue border-opacity-[0.08] pr-[7px]">
+              <div className="mr-[5px] flex items-center justify-start border-r border-r-brand-blue border-opacity-[0.08] pr-[7px]">
                 <TakeOffIcon size={20} />
                 <span className="ml-[9px] text-regular font-semibold text-brand-blue text-opacity-50">
                   {transfer?.flight_status?.flight_number}
                 </span>
               </div>
-              <div className="mr-[15px] flex items-center justify-start  border-r border-r-brand-blue border-opacity-[0.08]  pr-[7px]">
+              <div className="mr-[5px] flex items-center justify-start  border-r border-r-brand-blue border-opacity-[0.08]  pr-[7px]">
                 <ClockIcon size={20} />
                 <span className="ml-[9px] text-regular font-semibold text-brand-blue text-opacity-50">
                   {transfer?.flight_status?.flight_time}
                 </span>
               </div>
-              <div className="mr-[15px] flex items-center justify-start">
-                <span className="text-regular font-semibold text-brand-blue text-opacity-50">
+              <div className="mr-[5px] flex items-center justify-start">
+                <span className="text-regular font-semibold text-brand-green">
                   {transfer?.flight_status?.flight_status}
                 </span>
               </div>
@@ -147,7 +147,7 @@ const DetailsHighlight: React.FC<{
 }> = ({ children, className }) => {
   return (
     <div
-      className={`flex w-fit min-w-[285px] rounded-[18px] bg-brand-blue bg-opacity-[0.04] px-[19px] py-[8px] ${className}`}
+      className={`flex w-[285px] rounded-[18px] bg-brand-blue bg-opacity-[0.04] px-[19px] py-[8px] ${className}`}
     >
       {children}
     </div>
