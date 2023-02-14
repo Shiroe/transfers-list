@@ -15,6 +15,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<TRANSFER_DETAULS_RESPONSE | ERROR_RESPONSE>
 ) {
+  if (!req.body)
+    return res.status(400).json({ error: 'no body found in request' });
+
   const { id } = JSON.parse(req.body);
 
   if (!id) return res.status(400).json({ error: 'no ID provided' });

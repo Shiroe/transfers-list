@@ -39,10 +39,13 @@ yarn dev # to run the dev server
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the app.
 
+#
+
 ### API routes:
 
 - [api/transfers](http://localhost:3000/api/transfers): get all transfers from simulated endpoint (originally found locally inside `src/json`)
 - [api/transferDetails](http://localhost:3000/api/transferDetails): same as previous endpoint but for a single transfer's details
+  - you have to pass an `id` as param on the body
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
