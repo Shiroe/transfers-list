@@ -16,8 +16,8 @@ const SideNav = () => {
     <aside
       className={`
       fixed top-0
-          bottom-0 left-0 hidden w-[82px] flex-col justify-between rounded-r-[8px] 
-          bg-white p-[17px] shadow md:flex
+          bottom-0 left-0 z-40 hidden w-[82px] flex-col justify-between 
+          rounded-r-[8px] bg-white p-[17px] shadow md:flex
         `}
     >
       <div className="overflow-hidden">
