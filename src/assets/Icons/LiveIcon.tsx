@@ -5,14 +5,15 @@ const LiveIcon = ({
   color = '#2D3B4E',
   size = 32,
   isActive = false,
+  className,
 }: NavItemIcon) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
     <div
-      className={`mb-[15px] flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-[8px] transition-colors duration-150 ease-in-out ${
+      className={`flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-[8px] transition-colors duration-150 ease-in-out md:h-[44px] md:w-[44px] ${
         isActive ? 'bg-brand-green-dim' : ''
-      } hover:bg-brand-green`}
+      } hover:bg-brand-green ${className}`}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
     >

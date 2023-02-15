@@ -5,4 +5,5 @@ export interface IIcon {
 
 export interface NavItemIcon extends IIcon {
   isActive?: boolean;
+  className?: string;
 }

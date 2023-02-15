@@ -15,8 +15,9 @@ const SideNav = () => {
   return (
     <aside
       className={`
-          fixed top-0 bottom-0 left-0 flex w-[82px] flex-col 
-          justify-between rounded-r-[8px] bg-white p-[17px] shadow
+      fixed top-0
+          bottom-0 left-0 hidden w-[82px] flex-col justify-between rounded-r-[8px] 
+          bg-white p-[17px] shadow md:flex
         `}
     >
       <div className="overflow-hidden">
@@ -27,10 +28,23 @@ const SideNav = () => {
             alt="logo image"
           />
         </div>
-        <LiveIcon isActive={router.pathname === '/live'} />
-        <ScheduledIcon isActive={router.pathname === '/'} size={26} />
-        <StatisticsIcon isActive={router.pathname === '/statistics'} />
-        <RevenueIcon isActive={router.pathname === '/revenue'} />
+        <LiveIcon
+          isActive={router.pathname === '/live'}
+          className="mb-[15px]"
+        />
+        <ScheduledIcon
+          isActive={router.pathname === '/'}
+          className="mb-[15px]"
+          size={26}
+        />
+        <StatisticsIcon
+          isActive={router.pathname === '/statistics'}
+          className="mb-[15px]"
+        />
+        <RevenueIcon
+          isActive={router.pathname === '/revenue'}
+          className="mb-[15px]"
+        />
         <SettingsIcon isActive={router.pathname === '/settings'} />
       </div>
     </aside>
