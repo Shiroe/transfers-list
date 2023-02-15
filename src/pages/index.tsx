@@ -18,7 +18,7 @@ const Home = ({ transfers }: PageProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <section className="flex flex-col justify-center px-[20px] pt-[80px] md:p-[31px] md:pl-[112px] md:pt-[102px]">
+        <section className="flex flex-col justify-center p-[20px] pt-[80px] md:p-[31px] md:pl-[112px] md:pt-[102px]">
           <TransfersList transfers={transfers} />
         </section>
       </Layout>

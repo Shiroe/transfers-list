@@ -19,7 +19,7 @@ const MobileSideNav: React.FC<MobileMenuProps> = ({
 }) => {
   return (
     <aside
-      className={`fixed top-0 bottom-0 left-0 w-full bg-opacity-95  pr-[20px] transition-all delay-75 duration-300 ease-linear md:hidden ${
+      className={`fixed top-0 bottom-0 left-0 z-40 w-full bg-opacity-95  pr-[20px] transition-all delay-75 duration-300 ease-linear md:hidden ${
         isOpen
           ? 'bg-brand-blue bg-opacity-20'
           : '-translate-x-full bg-transparent'

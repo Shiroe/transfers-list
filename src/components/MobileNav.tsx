@@ -10,7 +10,7 @@ const MobileNav = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 flex h-[64px] items-center justify-between rounded-b-[8px] bg-white p-[20px] md:hidden`}
+        className={`fixed top-0 left-0 right-0 z-30 flex h-[64px] items-center justify-between rounded-b-[8px] bg-white p-[20px] shadow md:hidden`}
       >
         <div onClick={() => setIsMenuOpen(true)} className="h-[20px] w-[20px]">
           <MenuIcon size={19} />

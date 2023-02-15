@@ -110,7 +110,7 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
 
   return (
     <>
-      <h2 className="mb-[42px] text-title font-semibold text-brand-blue">
+      <h2 className="mb-[42px] hidden text-title font-semibold text-brand-blue md:block">
         Transfers
       </h2>
       <TransfersHeading />
@@ -166,7 +166,7 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
         handleClick={handleClick}
       />
 
-      <Modal isOpen={isModalOpen} onClose={onModalDismiss}>
+      <Modal isOpen={isModalOpen} onClose={onModalDismiss} className="z-40">
         <div
           onClick={(ev) => onDetailsPagination(ev, 'prev')}
           className={`flex h-[40px] w-[40px] -rotate-180 items-center justify-center rounded-full bg-white pl-1 ${
