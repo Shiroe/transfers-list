@@ -21,7 +21,8 @@ module.exports = {
         'md-extra': ['15px', '24px'],
         lg: ['18px', '22px'],
         'lg-extra': ['18px', '26px'],
-        'mobile-lg': ['20px', '24px']
+        'mobile-md': ['16px', '24px'],
+        'mobile-lg': ['20px', '24px'],
       },
       colors: {
         brand: {

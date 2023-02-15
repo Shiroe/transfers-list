@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 
 import { ITransfer, ITransferDetails } from '@/models/Transfer';
 
+import VerticalArrowIcon from '@/assets/Icons/VerticalArrowIcon';
 import CloseIcon from '@/assets/Icons/CloseIcon';
 import TransferIcon from '@/assets/Icons/TransferIcon';
 import FullCircleIcon from '@/assets/Icons/FullCircleIcon';
@@ -30,10 +31,26 @@ const TransferDetails: React.FC<TransferDetailsProps> = ({
   return (
     <div
       onClick={(ev) => ev.stopPropagation()}
-      className="relative flex h-[87%] w-[82.5%] items-center justify-center rounded-[8px] bg-white shadow-md"
+      className={`relative mt-[15px] flex h-fit max-h-[98%] w-full
+        flex-col items-center justify-start overflow-y-scroll rounded-t-[12px]
+        bg-white pt-[60px] shadow-md md:mt-[0px] md:h-[87%] md:w-[82.5%] md:flex-row
+        md:justify-center md:overflow-y-auto md:rounded-[8px] md:pt-0
+      `}
     >
       {children}
+      <div className="fixed top-[2%] left-0 right-0 z-50 h-[60px] overflow-hidden rounded-t-[12px] bg-brand-gray md:hidden">
+        <div className="flex h-full w-full items-center justify-between bg-brand-blue bg-opacity-[0.03] px-[20px] py-[15px]">
+          <p className="text-regular-extra font-semibold text-brand-blue text-opacity-50">{`${transfer?.traveler_first_name}'s trip`}</p>
+          <div
+            onClick={onClose}
+            className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-brand-blue bg-opacity-5"
+          >
+            <CloseIcon />
+          </div>
+        </div>
+      </div>
       <TravelerInfo
+        className="order-2 md:order-1"
         info={{
           photo: transfer?.traveler_photo,
           firstName: transfer?.traveler_first_name,
@@ -47,18 +64,21 @@ const TransferDetails: React.FC<TransferDetailsProps> = ({
           returnTransfer: transfer?.return_transfer,
         }}
       />
-      <div className="relative h-full w-[74%] p-[38px]">
+      <div className="relative order-1 w-full md:order-2 md:h-full md:w-[74%] md:p-[38px]">
         <div
           onClick={onClose}
-          className="absolute top-[22px] right-[22px] flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-full bg-brand-blue bg-opacity-5"
+          className={`absolute top-[22px] right-[22px] hidden h-[34px] w-[34px] cursor-pointer
+            items-center justify-center rounded-full bg-brand-blue
+          bg-opacity-5 md:flex
+          `}
         >
           <CloseIcon size={20} />
         </div>
-        <h3 className="mt-[5px] mb-[18px] text-title font-semibold text-brand-blue">
+        <h3 className="mt-[5px] mb-[18px] hidden text-title font-semibold text-brand-blue md:block">
           Transfers
         </h3>
         <TransferDetailsContent>
-          <h4 className="mb-[7px] text-lg-extra font-semibold text-brand-blue">
+          <h4 className="mb-[7px] text-mobile-lg font-semibold text-brand-blue md:text-lg-extra">
             {dayjs(transfer?.datetime).format('MMMM DD')}
           </h4>
           <div className="mb-[17px] h-[2px] w-[60px] rounded-[1.5px] bg-brand-green-dim"></div>
@@ -72,7 +92,7 @@ const TransferDetails: React.FC<TransferDetailsProps> = ({
                 <FullCircleIcon size={10} />
               </div>
             </div>
-            <div>
+            <div className="w-full md:w-[250px]">
               <LocationTransfer
                 className="mb-[10px]"
                 title={transfer?.from_location_title}
@@ -111,9 +131,12 @@ const TransferDetails: React.FC<TransferDetailsProps> = ({
                 {transfer?.hand_luggage}
               </span>
             </div>
+            <div className="absolute right-0 bottom-[8px] top-[8px] mr-[15px] flex -rotate-90 items-center justify-start self-end">
+              <VerticalArrowIcon size={20} />
+            </div>
           </DetailsHighlight>
           {transfer?.flight_status && (
-            <DetailsHighlight>
+            <DetailsHighlight className="justify-between md:justify-start">
               <div className="mr-[5px] flex items-center justify-start border-r border-r-brand-blue border-opacity-[0.08] pr-[7px]">
                 <TakeOffIcon size={20} />
                 <span className="ml-[9px] text-regular font-semibold text-brand-blue text-opacity-50">
@@ -147,7 +170,10 @@ const DetailsHighlight: React.FC<{
 }> = ({ children, className }) => {
   return (
     <div
-      className={`flex w-[285px] rounded-[18px] bg-brand-blue bg-opacity-[0.04] px-[19px] py-[8px] ${className}`}
+      className={`relative flex rounded-[18px] border-2 border-brand-blue
+        border-opacity-[0.04] px-[19px] py-[8px] md:w-[285px] md:border-none
+        md:bg-brand-blue md:bg-opacity-[0.04] ${className}
+      `}
     >
       {children}
     </div>
@@ -167,7 +193,7 @@ const TransferDetailsContent: React.FC<TransferDetailsContentProps> = ({
   return (
     <div
       {...rest}
-      className={`rounded-[6px] bg-brand-blue bg-opacity-[0.03] p-[32px] pt-[26px] ${className}`}
+      className={`rounded-[6px] bg-white p-[20px] pt-[26px] md:bg-brand-blue md:bg-opacity-[0.03] md:p-[32px] ${className}`}
     >
       {children}
     </div>
@@ -190,7 +216,7 @@ const LocationTransfer: React.FC<LocationTransferProps> = ({
   return (
     <div className={className}>
       <div
-        className={`flex w-[250px] items-center justify-between text-md-extra text-brand-blue`}
+        className={`flex items-center justify-between text-mobile-md text-brand-blue md:w-[250px] md:text-md-extra`}
       >
         {title}
         <span className="text-regular-extra font-semibold text-brand-blue text-opacity-50">
