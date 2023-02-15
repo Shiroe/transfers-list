@@ -190,7 +190,7 @@ const LocationTransfer: React.FC<LocationTransferProps> = ({
   return (
     <div className={className}>
       <div
-        className={`flex w-[250px] items-center justify-between text-md text-brand-blue`}
+        className={`flex w-[250px] items-center justify-between text-md-extra text-brand-blue`}
       >
         {title}
         <span className="text-regular-extra font-semibold text-brand-blue text-opacity-50">
