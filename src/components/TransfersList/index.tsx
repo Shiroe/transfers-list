@@ -169,7 +169,7 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
       <Modal isOpen={isModalOpen} onClose={onModalDismiss} className="z-40">
         <div
           onClick={(ev) => onDetailsPagination(ev, 'prev')}
-          className={`flex h-[40px] w-[40px] -rotate-180 items-center justify-center rounded-full bg-white pl-1 ${
+          className={`hidden h-[40px] w-[40px] -rotate-180 items-center justify-center rounded-full bg-white pl-1 md:flex ${
             loadingInView ? 'cursor-not-allowed' : 'cursor-pointer'
           }`}
         >
@@ -188,7 +188,7 @@ const TransfersList = ({ transfers }: TransfersListProps) => {
 
         <div
           onClick={(ev) => onDetailsPagination(ev, 'next')}
-          className={`flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white ${
+          className={`hidden h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:flex ${
             loadingInView ? 'cursor-not-allowed' : 'cursor-pointer'
           }`}
         >

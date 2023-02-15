@@ -38,7 +38,7 @@ const TravelerInfo: React.FC<TravelerInfoProps> = ({
   const opportunityExists =
     babies || earlyCheckin || lateCheckout || returnTransfer;
   return (
-    <div className="flex h-full w-[25.8%] flex-col items-center justify-start border-r border-r-brand-blue border-opacity-[0.08] px-[36px] py-[22px]">
+    <div className="flex h-full flex-col items-center justify-start border-r border-r-brand-blue border-opacity-[0.08] px-[36px] py-[22px] md:w-[25.8%]">
       {photo && (
         <Image
           src={photo}
