@@ -11,7 +11,9 @@ type LayoutProps = {
 
 const Layout = ({ children, className = '' }: LayoutProps) => {
   return (
-    <main className={`relative min-h-screen bg-brand-gray ${className}`}>
+    <main
+      className={`relative min-h-screen bg-brand-gray ${className} overflow-hidden`}
+    >
       <TopNav />
       <SideNav />
       <MobileNav />
