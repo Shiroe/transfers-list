@@ -22,7 +22,7 @@ const Modal: React.FC<Modal> = ({
       className={`fixed inset-0 flex items-center
         justify-around bg-brand-blue bg-opacity-95
         transition-all delay-75 duration-300 ease-in-out
-          ${isOpen ? `` : `translate-y-full bg-opacity-20`}
+          ${isOpen ? `` : `translate-y-[125%] bg-opacity-20`}
           ${className}
         `}
       {...rest}
