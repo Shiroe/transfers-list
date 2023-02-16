@@ -31,7 +31,7 @@ const TransferDetails: React.FC<TransferDetailsProps> = ({
   return (
     <div
       onClick={(ev) => ev.stopPropagation()}
-      className={`relative mt-[15px] flex h-fit max-h-[98%] w-full
+      className={`relative mt-[15px] flex h-full max-h-[98%] w-full
         flex-col items-center justify-start overflow-y-scroll rounded-t-[12px]
         bg-white pt-[60px] shadow-md md:mt-[0px] md:h-[87%] md:w-[82.5%] md:flex-row
         md:justify-center md:overflow-y-auto md:rounded-[8px] md:pt-0

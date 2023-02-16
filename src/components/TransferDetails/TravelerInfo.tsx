@@ -148,7 +148,7 @@ const TravelerInfo: React.FC<TravelerInfoProps> = ({
               </div>
             )}
             {!opportunityExists && (
-              <div className="flex h-[34px] w-[34px] items-center justify-center rounded-full border-[3px] border-brand-gray">
+              <div className="ml-[24px] flex h-[34px] w-[34px] items-center justify-center rounded-full border-[3px] border-brand-gray md:ml-0">
                 <div className="h-[2px] w-[6px] bg-brand-gray-dark"></div>
               </div>
             )}
