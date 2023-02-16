@@ -31,9 +31,9 @@ const MobileSideNav: React.FC<MobileMenuProps> = ({
           <div className="flex items-center justify-start">
             <BrandLogoIcon size={44} />
             <div className="ml-[20px] flex flex-col items-start justify-between">
-              <h3 className="text-title font-semibold text-brand-blue">
+              <h1 className="text-title font-semibold text-brand-blue">
                 Welcome
-              </h3>
+              </h1>
               <p className="text-xxs font-semibold text-brand-blue">
                 FOR PARTNERS
               </p>
@@ -65,7 +65,7 @@ const MobileSideNav: React.FC<MobileMenuProps> = ({
             <NavItem className="mb-[21px]" label="Settings">
               <SettingsIcon size={24} />
             </NavItem>
-            <hr />
+            <li className="h-[1px] w-full bg-brand-blue bg-opacity-[0.04]"></li>
           </ul>
           <button
             onClick={onClose}

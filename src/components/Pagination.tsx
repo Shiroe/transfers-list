@@ -22,7 +22,7 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className={`mx-auto flex items-center ${className}`}>
       <button
-        name="Previous page button"
+        aria-label="Previous page button"
         className={`mr-[14px] flex h-[38px] w-[38px] 
             items-center justify-center rounded-[4px] bg-white shadow-sm
             disabled:cursor-not-allowed
@@ -54,7 +54,7 @@ const Pagination: React.FC<PaginationProps> = ({
       })}
 
       <button
-        name="Next page button"
+        aria-label="Next page button"
         className={`ml-[14px] flex h-[38px] w-[38px] rotate-180
         items-center justify-center rounded-[4px] bg-white shadow-sm
         disabled:cursor-not-allowed
