@@ -157,6 +157,7 @@ const TransferDetails: React.FC<TransferDetailsProps> = ({
             </DetailsHighlight>
           )}
         </TransferDetailsContent>
+        <div className="mx-[20px] h-[1px] bg-brand-blue bg-opacity-[0.08] md:hidden"></div>
       </div>
     </div>
   );
