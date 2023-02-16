@@ -3,6 +3,13 @@ import dayjs from 'dayjs';
 
 import { ITransfer, ITransferDetails } from '@/models/Transfer';
 
+// Sub-components
+import TravelerInfo from './TravelerInfo';
+import LocationTransfer from './LocationTransfer';
+import TransferDetailsContent from './TransferDetailsContent';
+import DetailsHighlight from './DetailsHighlight';
+
+// Icons
 import VerticalArrowIcon from '@/assets/Icons/VerticalArrowIcon';
 import CloseIcon from '@/assets/Icons/CloseIcon';
 import TransferIcon from '@/assets/Icons/TransferIcon';
@@ -13,8 +20,6 @@ import LuggageIcon from '@/assets/Icons/LuggageIcon';
 import HandLuggageIcon from '@/assets/Icons/HandLuggageIcon';
 import TakeOffIcon from '@/assets/Icons/TakeOffIcon';
 import ClockIcon from '@/assets/Icons/ClockIcon';
-
-import TravelerInfo from './TravelerInfo';
 
 interface TransferDetailsProps {
   transfer: (ITransfer & ITransferDetails) | null;
@@ -164,69 +169,3 @@ const TransferDetails: React.FC<TransferDetailsProps> = ({
 };
 
 export default TransferDetails;
-
-const DetailsHighlight: React.FC<{
-  children: ReactNode;
-  className?: string;
-}> = ({ children, className }) => {
-  return (
-    <div
-      className={`relative flex rounded-[18px] border-2 border-brand-blue
-        border-opacity-[0.04] px-[19px] py-[8px] md:w-[285px] md:border-none
-        md:bg-brand-blue md:bg-opacity-[0.04] ${className}
-      `}
-    >
-      {children}
-    </div>
-  );
-};
-
-interface TransferDetailsContentProps {
-  children?: ReactNode;
-  className?: string;
-}
-
-const TransferDetailsContent: React.FC<TransferDetailsContentProps> = ({
-  children,
-  className,
-  ...rest
-}) => {
-  return (
-    <div
-      {...rest}
-      className={`rounded-[6px] bg-white p-[20px] pt-[26px] md:bg-brand-blue md:bg-opacity-[0.03] md:p-[32px] ${className}`}
-    >
-      {children}
-    </div>
-  );
-};
-
-interface LocationTransferProps {
-  title?: string;
-  datetime?: string;
-  address?: string;
-  className?: string;
-}
-
-const LocationTransfer: React.FC<LocationTransferProps> = ({
-  title,
-  datetime,
-  address,
-  className,
-}) => {
-  return (
-    <div className={className}>
-      <div
-        className={`flex items-center justify-between text-mobile-md text-brand-blue md:w-[250px] md:text-md-extra`}
-      >
-        {title}
-        <span className="text-regular-extra font-semibold text-brand-blue text-opacity-50">
-          {dayjs(datetime).format('HH:mm')}
-        </span>
-      </div>
-      <div className="text-sm-extra text-brand-blue text-opacity-50">
-        {address}
-      </div>
-    </div>
-  );
-};
